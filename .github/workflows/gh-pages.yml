@@ -13,11 +13,12 @@ jobs:
 
     - name: build
       uses: actions/setup-node@v1
-      env:
-        PUBLIC_PATH : /canvas-font-size/
       with:
         node-version: '10.16'
-    - run: |
+    - name : build2
+      env:
+        PUBLIC_PATH : /canvas-font-size/
+      run: |
         echo ${PUBLIC_PATH}
         npm install
         npm run build
