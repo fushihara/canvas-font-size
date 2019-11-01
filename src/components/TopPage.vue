@@ -30,6 +30,7 @@ export default Vue.extend({
       const canvas = this.$refs["canvas"] as HTMLCanvasElement;
       const textValues = Array.from(this.textValue);
       const canvasRect = canvas.getBoundingClientRect();
+      const fontSizePx = 200;
       canvas.setAttribute("width", `${canvasRect.width}px`);
       canvas.setAttribute("height", `${canvasRect.height}px`);
       let leftOffset = 0;
@@ -41,7 +42,7 @@ export default Vue.extend({
         let 背景色 = 背景色s[index % 背景色s.length];
         context.textBaseline = "bottom";
         context.fillStyle = "black";
-        context.font = "normal 200px sans-serif";
+        context.font = `normal ${fontSizePx}px 'Segoe Script'`;
         const 文字サイズ = 文字サイズ取得(text, context);
         const 文字高さ = 文字サイズ.top + 文字サイズ.bottom;
         const 文字幅 = 文字サイズ.right + 文字サイズ.left;
@@ -55,6 +56,18 @@ export default Vue.extend({
         context.fillText(text, leftOffset + 文字サイズ.left, 文字サイズ.top);
         leftOffset += 文字幅;
         console.log(`${text} は ${JSON.stringify(文字サイズ)}`);
+      }
+      {
+        // 下線を引く
+          context.save();
+          context.strokeStyle = "red";
+          context.stroke
+          context.beginPath();
+          context.moveTo(0,fontSizePx);
+          context.lineTo(canvasRect.width,fontSizePx);
+          context.closePath();
+          context.stroke();
+          context.restore();
       }
     }
   }
