@@ -13,6 +13,8 @@ jobs:
 
     - name: build
       uses: actions/setup-node@v1
+      env:
+        PUBLIC_PATH : /canvas-font-size/
       with:
         node-version: '10.16'
     - run: |
